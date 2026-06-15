@@ -1,18 +1,18 @@
 Grist widget Markdown DSFR
 ==========================
 
-> ⚠️ Attention : Ce widget n'est pas encore finalisé. Il s'agit pour le moment d'un prototype toujours en cours de développement. Il est fortement déconseillé de l'utilsier en production.
+> ⚠️ Attention : Ce widget n'est pas encore finalisé. Il s'agit pour le moment d'un prototype toujours en cours de développement. **Il est fortement déconseillé de l'utiliser en production !** 
 
 
 ## Préambule
 
-Le widget **Markdown‑DSFR** a été conçu pour simplifier la création d’une page de présentation dans Grist, sans passer par l'édition de code HTML brut. 
+Ce widget **Markdown‑DSFR** a été conçu pour simplifier la création d’une page d'accueil, de présentation dans Grist, sans passer par l'édition de code HTML brut.
 
 Il permet :
 
 - De saisir le contenu directement en Markdown grâce à un éditeur WYSIWYG (*What‑You‑See‑Is‑What‑You‑Get*).
-- De configurer, en quelques clics, les éléments récurrents d’une page conforme au Design System de l'État (DSFR).
-- De configurer facilement le rendu final (en-tête, pied de page, sommaire, coloration du code)
+- D'obtenir, en quelques clics, un rendu de page conforme au Design System de l'État (DSFR).
+- De configurer le rendu final (en-tête, pied de page, sommaire, coloration syntaxique du code)
 
 > 🔗 Accéder au widget (URL)
 >  - https://aot-dep-badi.github.io/grist-custom-widget-markdown-dsfr/
