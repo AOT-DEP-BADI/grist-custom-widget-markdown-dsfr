@@ -1,33 +1,40 @@
 Grist widget Markdown DSFR
 ==========================
 
+> ⚠️ Attention : Ce widget n'est pas encore finalisé. Il s'agit pour le moment d'un prototype toujours en cours de développement. Il est fortement déconseillé de l'utilsier en production.
 
 
-### 📦 Widget **Markdown‑DSFR** – version améliorée
+## Préambule
 
----
+Le widget **Markdown‑DSFR** a été conçu pour simplifier la création d’une page de présentation dans Grist, sans passer par l'édition de code HTML brut. 
 
-#### 🎯 Objectif du widget
+Il permet :
 
-Le widget **Markdown‑DSFR** a été imaginé pour simplifier la création d’une page d’atterrissage unique, sans passer par du HTML brut.  
-Il permet :
+- De saisir le contenu directement en Markdown grâce à un éditeur WYSIWYG (*What‑You‑See‑Is‑What‑You‑Get*).
+- De configurer, en quelques clics, les éléments récurrents d’une page conforme au Design System de l'État (DSFR).
+- De configurer facilement le rendu final (en-tête, pied de page, sommaire, coloration du code)
 
-* de saisir le contenu directement en **Markdown** grâce à un éditeur **WYSIWYG** ;
-* de configurer, en quelques clics, les éléments récurrents d’une page conforme au **Design System du Gouvernement Français (DSFR)** ;
-* d’obtenir un rendu final full‑DSFR (header, footer, sommaire, coloration du code) en un seul clic.
+> 🔗 Accéder au widget (URL)
+>  - https://aot-dep-badi.github.io/grist-custom-widget-markdown-dsfr/
 
----
 
-#### ✍️ Rédaction du contenu Markdown
+## Fonctionnalités
 
-Dans le panneau de configuration du widget, un éditeur *What‑You‑See‑Is‑What‑You‑Get* vous invite à écrire votre texte en Markdown.  
-Le texte est instantanément converti en HTML via **markdown-it** ; les balises HTML personnalisées sont autorisées (`html: true`) et les sauts de ligne sont respectés (`breaks: true`).
+### Rédaction du contenu Markdown
 
-> **Astuce :** utilisez la syntaxe native de Markdown (titres, listes, tableaux, blocs de code…) ; le rendu s’ajustera automatiquement aux styles DSFR.
+Dans le panneau de configuration du widget, un éditeur *What‑You‑See‑Is‑What‑You‑Get* vous invite à écrire votre texte en Markdown.
+Le texte est instantanément converti en HTML via la librairie **markdown-it**. Il est possible d’écrire en markdown directement ou bien d’utiliser certaines balises html (et notamment les composants DSFR directement). Les sauts de ligne sont éagelement respectés.
 
----
+![grist-widget-markdown-dsfr_no-init](doc/images/grist-widget-markdown-dsfr_no-init.png)
 
-#### ⚙️ Options de configuration
+![grist-widget-markdown-dsfr_wysiwyg](doc/images/grist-widget-markdown-dsfr_wysiwyg.png)
+
+
+### Options de configuration (back-end)
+
+Dans l'onglet configuration, plusieurs options sont disponibles pour personnaliser le rendu final.
+
+![grist-widget-markdown-dsfr_configuration](doc/images/grist-widget-markdown-dsfr_configuration.png)
 
 | Option | Description | Exemple d’utilisation |
 |--------|------------|-----------------------|
@@ -38,9 +45,12 @@ Le texte est instantanément converti en HTML via **markdown-it** ; les balise
 
 > Chaque option possède un **bouton d’aide** (icône « i ») qui ouvre un tooltip détaillant le rôle de la variable et les bonnes pratiques.
 
----
+Par exemple, pour la configuration du header
 
-#### 🖼️ Rendu final
+![grist-widget-markdown-dsfr_configuration-header](doc/images/grist-widget-markdown-dsfr_configuration-header.png)
+
+
+### Rendu final (front-end)
 
 Une fois la configuration enregistrée et le bouton **Prévisualiser** activé, le widget produit une page HTML intégrant :
 
@@ -49,29 +59,20 @@ Une fois la configuration enregistrée et le bouton **Prévisualiser** activé, 
 * la **table des matières** collante sur le côté gauche (ou en haut ; réglable) ;
 * le **footer** DSFR (ou sa variante sur‑mesure).
 
-> Le design reste 100 % compatible avec les exigences d’accessibilité et de responsive design du DSFR.
+> Le design reste 100% compatible avec les exigences d’accessibilité et de responsive design du DSFR.
 
----
+![grist-widget-markdown-dsfr_rendu header](doc/images/grist-widget-markdown-dsfr_rendu1.png)
 
-#### 📌 Points forts à retenir
+![grist-widget-markdown-dsfr_rendu footer](doc/images/grist-widget-markdown-dsfr_rendu2.png)
 
-* **Gain de temps** – plus besoin d’écrire du HTML/CSS ; le widget se charge de la mise en forme DSFR.
-* **Flexibilité** – activez ou désactivez chaque section (header, footer, TOC, coloration) selon vos besoins.
-* **Personnalisation avancée** – grâce aux champs Handlebars, vous pouvez injecter du HTML complet tout en conservant les classes DSFR.
-* **Simplicité d’utilisation** – tout se configure depuis l’interface WYSIWYG, sans toucher au code source.
 
----
+## À propos
 
-#### 📚 Documentation et support
+### Vous souhaitez contribuer ?
 
-* **Code source** : `@badi/grist-widget-markdown-dsfr-vanilla` (npm).
-* **Guide d’utilisation** : voir le fichier `README.md` du dépôt.
-* **Issues & demandes de fonctionnalité** : ouvrez une *issue* sur le repository GitHub.
+Les idées, les rapports de bugs, les signalements de fautes de frappe dans la documentation, les commentaires, les pull-requests et les étoiles GitHub sont toujours les bienvenus !
 
----
+### Licence
 
-> **En résumé**, le widget **Markdown‑DSFR** vous offre une solution clé‑en‑main pour créer rapidement des pages d’atterrissage élégantes, accessibles et pleinement intégrées au Design System du gouvernement français.
-
----  
-
-*Vincent BLAIN* – développeur du widget.  
+Publié sous [Licence MIT](https://www.google.com/search?q=./LICENSE),
+Copyright (c) 2026 Académie Orléans-Tours, Bureau analyse et développement informatique
