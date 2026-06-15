@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Grist custom widget - DSFR Markdown</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.3/dist/dsfr/dsfr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.32.2/tocbot.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.20.0/dist/easymde.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css">
+
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<div id="configuration" class="config-panel">
+
+    <div class="fr-container fr-my-4w">
+        <div class="fr-grid-row fr-grid-row--middle fr-pb-2w fr-mb-4w widget-header-configuration">
+            <div class="fr-col">
+                <h1 class="fr-h3 fr-mb-0">Markdown DSFR &mdash; Configuration</h1>
+                <p class="fr-text--sm fr-mb-0">Éditez le contenu et personnalisez l'apparence de votre page.</p>
+            </div>
+            <div class="fr-col-auto">
+                <ul class="fr-btns-group fr-btns-group--inline fr-btns-group--icon-left fr-btns-group--sm">
+                    <li>
+                        <button id="btn-cancel" type="button" class="fr-btn fr-btn--secondary">
+                            Annuler
+                        </button>
+                    </li>
+                    <li>
+                        <button id="btn-preview" type="button" class="fr-btn">
+                            Prévisualiser
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col-12">
+                <div id="tabs" class="fr-tabs">
+                    <!-- Tabs -->
+                    <ul class="fr-tabs__list" role="tablist" aria-label="Configuration">
+                        <li role="presentation">
+                            <button type="button" id="tab-content-markdown" class="fr-tabs__tab" tabindex="0" role="tab" aria-selected="true"
+                                    aria-controls="tab-content-markdown-panel">
+                                Contenu
+                            </button>
+                        </li>
+                        <li role="presentation">
+                            <button type="button" id="tab-header" class="fr-tabs__tab" tabindex="-1" role="tab"
+                                    aria-selected="false" aria-controls="tab-header-panel">
+                                Configuration
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab content markdown -->
+                    <div id="tab-content-markdown-panel" class="fr-tabs__panel fr-tabs__panel--selected" role="tabpanel"
+                         aria-labelledby="tab-content-markdown" tabindex="0">
+                        <div class="fr-input-group">
+                            <textarea class="fr-input" id="textarea_markdown_content"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tab configuration -->
+                    <div id="tab-header-panel" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-header" tabindex="0">
+
+                        <!-- Configuration > Header DSFR -->
+                        <section class="section-configuration">
+                            <div class="section-configuration-header">
+                                <button class="fr-btn--tertiary-no-outline fr-btn--md fr-icon-arrow-right-s-line fr-btn--icon-left icon-toggle"
+                                        type="button"
+                                        aria-expanded="false"
+                                        aria-controls="section-configuration-body-header">
+                                    <span class="fr-h4 fr-mb-0 fr-ml-1w">Header</span>
+                                </button>
+                                <div class="section-configuration-description">
+                                    <p class="fr-text--sm fr-mb-0">
+                                        Personnalisez l'en-tête de la page avec son titre, son slogan et logo.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="section-configuration-body fr-collapse" id="section-configuration-body-header">
+                                <div class="fr-form-group fr-mb-4w">
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="toggle_header_enabled" checked>
+                                        <label class="fr-toggle__label" for="toggle_header_enabled">Désactiver l'en-tête dans la page</label>
+                                    </div>
+                                </div>
+
+                                <div id="section-configuration-body-header-options">
+                                    <!-- Tab: DSFR configuration > Header > Logo -->
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_header_logo"
+                                                            aria-describedby="tooltip_header_logo">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_header_logo"
+                                                          role="tooltip">Permet d'insérer le bloc Marianne ou un logo depuis un simple texte, un lien URL vers une image, ou directement depuis une balise svg ou img.<br/><br/><strong>Variable</strong> : <code>{{{ header_logo }}}</code></span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="textarea_header_logo">
+                                                        Logo du header
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <textarea class="fr-input textarea-auto-grow" id="textarea_header_logo"
+                                                          name="textarea_header_logo" rows="1"></textarea>
+                                                <p class="fr-hint-text fr-mt-1w fr-mb-0">
+                                                    Un simple texte (ex: <i>Intitulé &lt;br/&gt; officiel</i>), une URL
+                                                    d'une image, ou le code d'une balise <code>&lt;img&gt;</code> ou
+                                                    <code>&lt;svg&gt;</code>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tab: DSFR configuration > Header > Title -->
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_header_title"
+                                                            aria-describedby="tooltip_header_title">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_header_title"
+                                                          role="tooltip">Le nom du site ou de l'entité<br/><br/><strong>Variable</strong> : <code>{{{ header_title }}}</code></span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="input_header_title">
+                                                        Titre du service
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <input class="fr-input" type="text" id="input_header_title"
+                                                       name="input_header_title">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tab: DSFR configuration > Header > Subtitle -->
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_header_subtitle"
+                                                            aria-describedby="tooltip_header_subtitle">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_header_subtitle"
+                                                          role="tooltip">Une baseline, sous le nom du site (optionnel)<br/><br/><strong>Variable</strong> : <code>{{{ header_subtitle }}}</code></span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="input_header_subtitle">
+                                                        Sous-titre / slogan
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <input class="fr-input" type="text" id="input_header_subtitle"
+                                                       name="input_header_subtitle">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tab: DSFR configuration > Header > Template HTML -->
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+
+                                            <div class="fr-col-auto fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_header_template_html"
+                                                            aria-describedby="tooltip_header_template_html">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement"
+                                                          id="tooltip_header_template_html" role="tooltip">
+                                                        Permet de réécrire entièrement la structure HTML du header.<br/><br/>
+                                                        Supporte le HTML et les expressions <code>{{ handlebars }}</code>.
+                                                        Veillez à respecter les classes CSS du DSFR pour maintenir l'accessibilité et le design.<br/><br/>
+                                                        Voir le guide <a target="_blank"
+                                                                         href="https://handlebarsjs.com/guide/">template Handlebar.js</a>
+                                                    </span>
+                                                </div>
+                                                <div class="fr-col-auto">
+                                                    <label class="fr-label" for="textarea_header_custom_html">
+                                                        Template HTML du header
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col"></div>
+                                            <div class="fr-col-auto">
+                                                <button aria-controls="modal_reset_header_custom_html"
+                                                        data-fr-opened="false" type="button"
+                                                        id="btn_reset_header_custom_html"
+                                                        class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-icon-refresh-line fr-btn--icon-left">
+                                                    Réinitialiser
+                                                </button>
+                                                <dialog id="modal_reset_header_custom_html" class="fr-modal"
+                                                        aria-labelledby="modal_reset_header_custom_html-title"
+                                                        data-fr-concealing-backdrop="true">
+                                                    <div class="fr-container fr-container--fluid fr-container-md">
+                                                        <div class="fr-grid-row fr-grid-row--center">
+                                                            <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+                                                                <div class="fr-modal__body">
+                                                                    <div class="fr-modal__header">
+                                                                        <button class="fr-btn--close fr-btn"
+                                                                                aria-controls="modal_reset_header_custom_html"
+                                                                                type="button">
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="fr-modal__content">
+                                                                        <h1 id="modal_reset_header_custom_html-title"
+                                                                            class="fr-modal__title">
+                                                                            <span class="fr-icon-warning-fill fr-icon--lg fr-mr-2w"
+                                                                                  aria-hidden="true"></span>
+                                                                            Confirmer la réinitialisation de l'en-tête ?
+                                                                        </h1>
+                                                                        <p>
+                                                                            Êtes-vous sûr de vouloir restaurer le
+                                                                            template du header par défaut ? <strong>Attention,
+                                                                            toutes vos modifications seront
+                                                                            définitivement perdues.</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="fr-modal__footer">
+                                                                        <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                                                                            <li>
+                                                                                <button class="fr-btn fr-icon-check-line fr-btn--icon-left"
+                                                                                        id="btn_confirm_reset_header_custom_html">
+                                                                                    Oui
+                                                                                </button>
+                                                                            </li>
+                                                                            <li>
+                                                                                <button class="fr-btn fr-btn--secondary fr-icon-close-line fr-btn--icon-left"
+                                                                                        aria-controls="modal_reset_header_custom_html"
+                                                                                        type="button">
+                                                                                    Annuler
+                                                                                </button>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </dialog>
+                                            </div>
+
+                                            <div class="fr-col-12 fr-mt-1w">
+                                                <div id="textarea_header_custom_html"
+                                                     class="textarea_codejar language-html"></div>
+                                                <p class="fr-hint-text fr-mt-1w">
+                                                    Aide à la rédaction de l'<a target="_blank"
+                                                                                href="https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/en-tete">en-tête
+                                                    DSFR</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Configuration > Footer DSFR -->
+                        <section class="section-configuration">
+                            <div class="section-configuration-header">
+                                <button class="fr-btn--tertiary-no-outline fr-btn--md fr-icon-arrow-right-s-line fr-btn--icon-left icon-toggle"
+                                        type="button"
+                                        aria-expanded="false"
+                                        aria-controls="section-configuration-body-footer">
+                                    <span class="fr-h4 fr-mb-0 fr-ml-1w">Footer</span>
+                                </button>
+                                <div class="section-configuration-description">
+                                    <p class="fr-text--sm fr-mb-0">
+                                        Personnalisez le pied de page avec le logo, la description et les mentions légales.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="section-configuration-body fr-collapse" id="section-configuration-body-footer">
+
+                                <div class="fr-form-group fr-mb-4w">
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="toggle_footer_enabled" checked>
+                                        <label class="fr-toggle__label" for="toggle_footer_enabled">Désactiver le pied de page</label>
+                                    </div>
+                                </div>
+
+                                <div id="section-configuration-body-footer-options">
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_footer_logo"
+                                                            aria-describedby="tooltip_footer_logo">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_footer_logo" role="tooltip">
+                                Logo spécifique au footer (si différent du header).<br/><br/><strong>Variable</strong> : <code>{{{ footer_logo }}}</code>
+                            </span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="textarea_footer_logo">Logo du footer</label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <textarea class="fr-input textarea-auto-grow" id="textarea_footer_logo" rows="1"></textarea>
+                                                <p class="fr-hint-text fr-mt-1w fr-mb-0">
+                                                    Un simple texte (ex: <i>Intitulé &lt;br/&gt; officiel</i>), une URL
+                                                    d'une image, ou le code d'une balise <code>&lt;img&gt;</code> ou
+                                                    <code>&lt;svg&gt;</code>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_footer_description"
+                                                            aria-describedby="tooltip_footer_description">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_footer_description" role="tooltip">
+                                Texte de présentation (3 lignes max recommandé).<br/><br/><strong>Variable</strong> : <code>{{{ footer_description }}}</code>
+                            </span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="textarea_footer_description">Présentation</label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <textarea class="fr-input textarea-auto-grow" id="textarea_footer_description" rows="1"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_footer_license"
+                                                            aria-describedby="tooltip_footer_license">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_footer_license" role="tooltip">
+                                Mention de licence (ex: Etalab).<br/><br/><strong>Variable</strong> : <code>{{{ footer_license }}}</code>
+                            </span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="input_footer_license">Licence</label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <input class="fr-input" type="text" id="input_footer_license">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_footer_copyright"
+                                                            aria-describedby="tooltip_footer_copyright">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_footer_copyright" role="tooltip">
+                                Mention de copyright.<br/><br/><strong>Variable</strong> : <code>{{{ footer_copyright }}}</code>
+                            </span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="input_footer_copyright">Copyright</label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <input class="fr-input" type="text" id="input_footer_copyright">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-auto fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_footer_template_html"
+                                                            aria-describedby="tooltip_footer_template_html">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_footer_template_html" role="tooltip">
+                                Permet de réécrire entièrement la structure HTML du footer.<br/><br/>
+                                Supporte le HTML et les expressions Handlebars.
+                            </span>
+                                                </div>
+                                                <div class="fr-col-auto">
+                                                    <label class="fr-label" for="textarea_footer_custom_html">Template HTML du footer</label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col"></div>
+                                            <div class="fr-col-auto">
+                                                <button aria-controls="modal_reset_footer_custom_html" data-fr-opened="false" type="button"
+                                                        id="btn_reset_footer_custom_html"
+                                                        class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-icon-refresh-line fr-btn--icon-left">
+                                                    Réinitialiser
+                                                </button>
+
+                                                <dialog id="modal_reset_footer_custom_html" class="fr-modal"
+                                                        aria-labelledby="modal_reset_footer_title">
+                                                    <div class="fr-container fr-container--fluid fr-container-md">
+                                                        <div class="fr-grid-row fr-grid-row--center">
+                                                            <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+                                                                <div class="fr-modal__body">
+                                                                    <div class="fr-modal__header">
+                                                                        <button class="fr-btn--close fr-btn"
+                                                                                aria-controls="modal_reset_footer_custom_html" type="button">
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="fr-modal__content">
+                                                                        <h1 id="modal_reset_footer_title" class="fr-modal__title">
+                                                                            <span class="fr-icon-warning-fill fr-icon--lg fr-mr-2w"></span>
+                                                                            Confirmer la réinitialisation du pied de page ?
+                                                                        </h1>
+                                                                        <p>
+                                                                            Êtes-vous sûr de vouloir restaurer le
+                                                                            pied de page avec les valeurs par défaut ? <strong>Attention,
+                                                                            toutes vos modifications seront
+                                                                            définitivement perdues.</strong>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="fr-modal__footer">
+                                                                        <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                                                                            <li>
+                                                                                <button class="fr-btn fr-icon-check-line fr-btn--icon-left"
+                                                                                        id="btn_confirm_reset_footer_custom_html">
+                                                                                    Oui
+                                                                                </button>
+                                                                            </li>
+                                                                            <li>
+                                                                                <button class="fr-btn fr-btn--secondary fr-icon-close-line fr-btn--icon-left"
+                                                                                        aria-controls="modal_reset_footer_custom_html"
+                                                                                        type="button">
+                                                                                    Annuler
+                                                                                </button>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </dialog>
+                                            </div>
+
+                                            <div class="fr-col-12 fr-mt-1w">
+                                                <div id="textarea_footer_custom_html" class="textarea_codejar language-html"></div>
+                                                <p class="fr-hint-text fr-mt-1w">
+                                                    Aide à la rédaction du <a target="_blank"
+                                                                              href="https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/pied-de-page">pied
+                                                    de page DSFR</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Configuration > Table of contents (tocbot.js) -->
+                        <section class="section-configuration">
+                            <div class="section-configuration-header">
+                                <button class="fr-btn--tertiary-no-outline fr-btn--md fr-icon-arrow-right-s-line fr-btn--icon-left icon-toggle"
+                                        type="button"
+                                        aria-expanded="false"
+                                        aria-controls="section-configuration-body-toc">
+                                    <span class="fr-h4 fr-mb-0 fr-ml-1w">Table des matières (TOC)</span>
+                                </button>
+                                <div class="section-configuration-description">
+                                    <p class="fr-text--sm fr-mb-0">
+                                        Gérez l'affichage et le comportement du sommaire généré à partir des titres via la librairie
+                                        <a target="_blank" href="https://tscanlin.github.io/tocbot/#api">Tocbot.js</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="section-configuration-body fr-collapse" id="section-configuration-body-toc">
+
+                                <div class="fr-form-group fr-mb-4w">
+                                    <div class="fr-grid-row fr-grid-row--middle">
+                                        <div class="fr-col">
+                                            <div class="fr-toggle">
+                                                <input type="checkbox" class="fr-toggle__input" id="toggle_toc_enabled" checked>
+                                                <label class="fr-toggle__label" for="toggle_toc_enabled">Afficher la table des matières</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="fr-col-auto">
+                                            <button aria-controls="modal_reset_toc_config" data-fr-opened="false" type="button"
+                                                    id="btn_reset_toc_config"
+                                                    class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-icon-refresh-line fr-btn--icon-left">
+                                                Réinitialiser
+                                            </button>
+
+                                            <dialog id="modal_reset_toc_config" class="fr-modal" aria-labelledby="modal_reset_toc_config_title">
+                                                <div class="fr-container fr-container--fluid fr-container-md">
+                                                    <div class="fr-grid-row fr-grid-row--center">
+                                                        <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+                                                            <div class="fr-modal__body">
+                                                                <div class="fr-modal__header">
+                                                                    <button class="fr-btn--close fr-btn" aria-controls="modal_reset_toc_config"
+                                                                            type="button">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="fr-modal__content">
+                                                                    <h1 id="modal_reset_toc_config_title" class="fr-modal__title">
+                                                                        <span class="fr-icon-warning-fill fr-icon--lg fr-mr-2w"></span>
+                                                                        Confirmer la réinitialisation du <br/>sommaire ?
+                                                                    </h1>
+                                                                    <p>
+                                                                        Êtes-vous sûr de vouloir restaurer la configuration du sommaire avec les
+                                                                        valeurs par défaut ? <strong>Attention,
+                                                                        toutes vos modifications seront
+                                                                        définitivement perdues.</strong>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="fr-modal__footer">
+                                                                    <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                                                                        <li>
+                                                                            <button class="fr-btn fr-icon-check-line fr-btn--icon-left"
+                                                                                    id="btn_confirm_reset_toc_config">
+                                                                                Oui
+                                                                            </button>
+                                                                        </li>
+                                                                        <li>
+                                                                            <button class="fr-btn fr-btn--secondary fr-icon-close-line fr-btn--icon-left"
+                                                                                    aria-controls="modal_reset_toc_config"
+                                                                                    type="button">
+                                                                                Annuler
+                                                                            </button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </dialog>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="section-configuration-body-toc-options">
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_toc_title"
+                                                            aria-describedby="tooltip_toc_title">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_toc_title" role="tooltip">
+                                                        Définissez le titre principal affiché en haut de votre sommaire (ex: "Sommaire" ou "Table des matières").
+                                                        <br/><br/>
+                                                        Mettre à vide pour le cacher.
+                                                    </span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="input_toc_title">Titre du sommaire</label>
+                                                </div>
+                                            </div>
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <input class="fr-input" type="text" id="input_toc_title">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row">
+                                            <div class="fr-col-12 fr-col-md-3 fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_toc_colors"
+                                                            aria-describedby="tooltip_toc_colors">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_toc_colors" role="tooltip">
+                                                        Personnalisez les couleurs de l'élément actif, des textes secondaires, du survol et de la bordure latérale du sommaire.
+                                                        Le sélecteur de couleur permet d'utiliser des valeurs <strong>RGB</strong> et <strong>RGBA</strong> pour ajuster l'opacité de vos éléments.<br/><br/>
+                                                        Ces réglages surchargent les variables CSS suivantes :
+                                                        <code>--toc-primary</code>,
+                                                        <code>--toc-text-muted</code>,
+                                                        <code>--toc-bg-hover</code>
+                                                        et <code>--toc-border</code>.
+                                                    </span>
+                                                </div>
+                                                <div class="fr-col">
+                                                    <label class="fr-label" for="color_toc_primary">Couleurs du sommaire</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="fr-col-12 fr-col-md-9">
+                                                <div class="fr-grid-row fr-grid-row--gutters">
+
+                                                    <div class="fr-col-6 fr-col-lg-3">
+                                                        <div class="color-picker-wrapper">
+                                                            <div id="picker_toc_primary"></div>
+                                                            <label class="fr-text--xs fr-mb-0 fr-mt-1v">Primaire / Actif</label>
+                                                            <input type="hidden" id="color_toc_primary">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="fr-col-6 fr-col-lg-3">
+                                                        <div class="color-picker-wrapper">
+                                                            <div id="picker_toc_text_muted"></div>
+                                                            <label class="fr-text--xs fr-mb-0 fr-mt-1v">Texte secondaire</label>
+                                                            <input type="hidden" id="color_toc_text_muted">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="fr-col-6 fr-col-lg-3">
+                                                        <div class="color-picker-wrapper">
+                                                            <div id="picker_toc_bg_hover"></div>
+                                                            <label class="fr-text--xs fr-mb-0 fr-mt-1v">Fond au survol</label>
+                                                            <input type="hidden" id="color_toc_bg_hover">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="fr-col-6 fr-col-lg-3">
+                                                        <div class="color-picker-wrapper">
+                                                            <div id="picker_toc_border"></div>
+                                                            <label class="fr-text--xs fr-mb-0 fr-mt-1v">Bordure</label>
+                                                            <input type="hidden" id="color_toc_border">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fr-input-group fr-mb-3w">
+                                        <div class="fr-grid-row fr-grid-row--middle">
+                                            <div class="fr-col-auto fr-grid-row fr-grid-row--middle">
+                                                <div class="fr-col-auto">
+                                                    <button class="fr-btn--tooltip fr-btn fr-btn--sm fr-icon-info-line fr-mr-1v"
+                                                            id="btn-tooltip_toc_config"
+                                                            aria-describedby="tooltip_toc_config">Aide
+                                                    </button>
+                                                    <span class="fr-tooltip fr-placement" id="tooltip_toc_config" role="tooltip">
+                                                        Accédez aux réglages avancés pour personnaliser le comportement et le rendu de votre sommaire
+                                                        généré par <strong>Tocbot.js</strong>. Cette libraire analyse la structure de votre page
+                                                        pour créer un sommaire interactif à partir de vos titres.
+                                                        <br/><br/>
+                                                        Le programme génère automatiquement des <strong>slugs</strong> (identifiants uniques) pour chaque titre
+                                                        afin de créer des ancres de navigation, vous évitant ainsi d'avoir à les définir manuellement dans
+                                                        votre contenu.
+                                                        <br/><br/>
+                                                        Vous pouvez affiner la sélection en utilisant la propriété <code>ignoreSelector</code> pour
+                                                        exclure certains titres spécifiques du rendu final en écrivant en markdown
+                                                        <br/><code>## Mon titre {.toc-ignore}</code>
+                                                    </span>
+                                                </div>
+                                                <div class="fr-col-auto">
+                                                    <label class="fr-label" for="textarea_toc_config">Options API Tocbot.js</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="fr-col-12 fr-mt-1w">
+                                                <div id="textarea_toc_config" class="textarea_codejar language-json"></div>
+                                                <p class="fr-hint-text fr-mt-1w">
+                                                    Consulter la documentation <a target="_blank" href="https://tscanlin.github.io/tocbot/#api">API
+                                                    Tocbot.js v4.36.4</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Configuration > Syntax highlighting -->
+                        <section class="section-configuration">
+                            <div class="section-configuration-header">
+                                <button class="fr-btn--tertiary-no-outline fr-btn--md fr-icon-arrow-right-s-line fr-btn--icon-left icon-toggle"
+                                        type="button"
+                                        aria-expanded="false"
+                                        aria-controls="section-configuration-body-syntax">
+                                    <span class="fr-h4 fr-mb-0 fr-ml-1w">Coloration syntaxique</span>
+                                </button>
+                                <div class="section-configuration-description">
+                                    <p class="fr-text--sm fr-mb-0">
+                                        Optimisez l'affichage de vos blocs de code et profitez d'une coloration syntaxique avancée grâce à la bibliothèque
+                                        <a target="_blank" href="https://prismjs.com/">Prism.js</a>.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="section-configuration-body fr-collapse" id="section-configuration-body-syntax">
+                                <div class="fr-form-group fr-mb-2w">
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="toggle_syntax_highlighting_enabled">
+                                        <label class="fr-toggle__label" for="toggle_syntax_highlighting_enabled">Activer la prise en charge de la coloration syntaxique du code</label>
+                                    </div>
+                                </div>
+                                <div class="fr-form-group fr-mb-0">
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="toggle_syntax_highlighting_soft_wrap">
+                                        <label class="fr-toggle__label" for="toggle_syntax_highlighting_soft_wrap">Activer le retour à la ligne automatique du code (<i>soft-wrap</i>)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="main">
+    <div id="header-container">
+    </div>
+
+    <main class="fr-container fr-my-8w">
+        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--revers-md">
+            <div class="fr-col-12 fr-col-md-9">
+                <div id="markdown-rendered" class="js-toc-content"></div>
+            </div>
+            <aside id="toc-aside" class="fr-col-md-3 no-print">
+                <div class="toc-wrapper">
+                    <div class="toc-title">Sommaire</div>
+                    <nav class="js-toc"></nav>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <div id="footer-container">
+    </div>
+</div>
+
+<div id="alert" class="fr-container fr-my-4w"></div>
+
+<!-- GRIST custom widget API -->
+<script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+<!-- DSFR JS (for tooltips, notices, etc.) -->
+<script defer src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.3/dist/dsfr.module.min.js" type="module"></script>
+<!-- Handlebar JavaScript template engine -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+<!-- Transpilator markdown -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it-attrs/markdown-it-attrs.browser.js"></script>
+<!-- Transpilator mermaid diagram -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<!-- Generate a table of contents based on the DOM heading structure -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.32.2/tocbot.min.js"></script>
+<!-- Syntax highlighting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<!-- Markdown live editor -->
+<script src="https://cdn.jsdelivr.net/npm/easymde@2.20.0/dist/easymde.min.js"></script>
+<!-- Color picker -->
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/*! Pickr 1.9.1 MIT | https://github.com/Simonwep/pickr */
+.pcr-app .pcr-interaction .pcr-result::-moz-selection {
+    background: var(--theme-secondary);
+    color: #fff
+}
+
+.pcr-app .pcr-interaction .pcr-result::selection {
+    background: var(--theme-secondary);
+    color: #fff
+}
+
+.pcr-app .pcr-interaction .pcr-type.active {
+    color: #fff;
+    background: var(--theme-secondary)
+}
+
+.pcr-app .pcr-interaction .pcr-save {
+    background: var(--theme-secondary)
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .pcr-app .pcr-interaction input:hover {
+        background: var(--theme-secondary);
+    }
+}

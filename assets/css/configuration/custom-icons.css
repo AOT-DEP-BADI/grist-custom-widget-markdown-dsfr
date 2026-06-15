@@ -1,0 +1,41 @@
+#configuration {
+
+    /* Standard icons by mapping DSFR-like classes to local SVG assets */
+
+    .fr-icon-arrow-right-s-line::before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: currentColor;
+        -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.1719 12L8.22192 7.05001L9.63592 5.63601L15.9999 12L9.63592 18.364L8.22192 16.95L13.1719 12Z"/></svg>');
+        mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.1719 12L8.22192 7.05001L9.63592 5.63601L15.9999 12L9.63592 18.364L8.22192 16.95L13.1719 12Z"/></svg>');
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+    }
+
+    .fr-icon-refresh-line::before,
+    .fr-icon-refresh-line::after {
+        -webkit-mask-image: url("../../icons/refresh-line.svg");
+        mask-image: url("../../icons/refresh-line.svg");
+    }
+
+    .fr-icon-warning-fill::before,
+    .fr-icon-warning-fill::after {
+        -webkit-mask-image: url("../../icons/fr--warning-fill.svg");
+        mask-image: url("../../icons/fr--warning-fill.svg");
+    }
+
+    .fr-icon-check-line::before,
+    .fr-icon-check-line::after {
+        -webkit-mask-image: url("../../icons/check-line.svg");
+        mask-image: url("../../icons/check-line.svg");
+    }
+
+    .fr-icon-close-line::before,
+    .fr-icon-close-line::after {
+        -webkit-mask-image: url("../../icons/close-line.svg");
+        mask-image: url("../../icons/close-line.svg");
+    }
+}

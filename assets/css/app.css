@@ -1,0 +1,30 @@
+@import "configuration/view-configuration.css";
+@import "main/view-main.css";
+@import "pickr/custom-pickr.css";
+
+:root {
+    --theme-primary: #16b378;
+    --theme-primary-hover: #009058;
+    --theme-primary-active: #006d43;
+    --theme-secondary: #929299;
+    --theme-background-action-low: rgba(203, 246, 230, 0.3);
+    --theme-background-action-low-hover: #B3EDD7;
+    --theme-background-action-low-active: #9AE3C7;
+    --theme-text-gray-color: var(--grey-425-625);
+    --theme-border-gray-color: var(--border-default-grey);
+}
+
+#configuration, #main, #alert {
+    display: none;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .new-page {
+        break-before: page;
+        page-break-before: always;
+    }
+}

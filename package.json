@@ -1,0 +1,22 @@
+{
+  "name": "@badi/grist-widget-markdown-dsfr-vanilla",
+  "description": "A Grist custom widget for rendering Markdown content using the French Government Design System (DSFR).",
+  "homePage": "https://github.com/gristlabs/grist-widget",
+  "version": "0.0.1",
+  "grist": {
+    "name": "Markdown DSFR vanilla",
+    "url": "https://gristlabs.github.io/grist-widget/markdown-dsfr-vanilla",
+    "widgetId": "@badi/grist-widget-markdown-dsfr-vanilla",
+    "published": true,
+    "accessLevel": "none",
+    "renderAfterReady": true,
+    "description": "A Markdown rendering engine based on the French Government Design System (DSFR).",
+    "authors": [
+      {
+        "name": "Vincent BLAIN",
+        "url": "https://github.com/v20100v"
+      }
+    ],
+    "isGristLabsMaintained": true
+  }
+}
